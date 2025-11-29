@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Photo Memories 💖</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #ffb6c1, #dda0dd);
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #fff;
+      text-align: center;
+      overflow-x: hidden;
+      overflow-y: auto;
+      position: relative;
+      height: 100vh;
+    }
+
+    h1 {
+      margin-top: 40px;
+      font-size: 2.8em;
+      letter-spacing: 1px;
+    }
+
+    p.subtitle {
+      font-size: 1.2em;
+      margin-top: 10px;
+      margin-bottom: 50px;
+      font-style: italic;
+      color: #fff9f9;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      padding: 20px 40px 60px;
+      justify-items: center;
+      animation: fadeIn 2s ease;
+      z-index: 2;
+      position: relative;
+    }
+
+    .photo {
+      background-color: rgba(255, 255, 255, 0.15);
+      border-radius: 20px;
+      padding: 15px;
+      box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .photo:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
+    }
+
+    .photo img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 15px;
+    }
+
+    .caption {
+      margin-top: 10px;
+      font-size: 1em;
+      color: #fff;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .btn {
+      margin-top: 30px;
+      margin-bottom: 40px;
+      background-color: white;
+      color: #d63384;
+      padding: 12px 25px;
+      border-radius: 30px;
+      border: none;
+      font-size: 1em;
+      cursor: pointer;
+      transition: 0.3s;
+      z-index: 3;
+      position: relative;
+    }
+
+    .btn:hover {
+      background-color: #ffe6f2;
+      transform: scale(1.05);
+    }
+
+    /* Love falling animation */
+    .love {
+      position: fixed;
+      top: -10px;
+      font-size: 1.5rem;
+      animation: fall 5s linear infinite;
+      opacity: 0.8;
+      z-index: 1;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>💞 Our Memories Together 💞</h1>
+  <p class="subtitle">“Every picture tells our love story — from strangers to soulmates.” 🥹✨</p>
+
+  <div class="gallery">
+    <div class="photo">
+      <img src="images/photo1.jpg" alt="memory1">
+      <div class="caption">First time jumpa 💗</div>
+    </div>
+
+    <div class="photo">
+      <img src="images/photo2.jpg" alt="memory2">
+      <div class="caption">Movie night 🍿</div>
+    </div>
+
+    <div class="photo">
+      <img src="images/photo3.jpg" alt="memory3">
+      <div class="caption">Kedai makan fav kita 🥰</div>
+    </div>
+
+    <div class="photo">
+      <img src="images/photo4.jpg" alt="memory4">
+      <div class="caption">Raya bersama 🕌💚</div>
+    </div>
+
+    <div class="photo">
+      <img src="images/photo5.jpg" alt="memory5">
+      <div class="caption">Sweet moment 💞</div>
+    </div>
+  </div>
+
+  <button class="btn" onclick="window.location.href='gift.html'">Kembali ke Gift 🎁</button>
+
+  <script>
+    const emojis = ['💖','💞','💕','💘','💓','💗'];
+    function createLove() {
+      const love = document.createElement('div');
+      love.classList.add('love');
+      love.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      love.style.left = Math.random() * 100 + 'vw';
+      love.style.animationDuration = (3 + Math.random() * 3) + 's';
+      document.body.appendChild(love);
+
+      setTimeout(() => {
+        love.remove();
+      }, 5000);
+    }
+    setInterval(createLove, 300);
+  </script>
+
+</body>
+</html>

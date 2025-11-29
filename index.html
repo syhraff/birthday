@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login | Birthday Code</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: url('iii.png') no-repeat center center/cover;
+      position: relative;
+      overflow: hidden;
+      animation: fadeIn 1.2s ease forwards;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(255, 182, 193, 0.25);
+      backdrop-filter: blur(3px);
+      z-index: 0;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      background: rgba(255, 255, 255, 0.45);
+      border: 2px solid rgba(255, 255, 255, 0.8);
+      border-radius: 20px;
+      padding: 45px 60px;
+      text-align: center;
+      box-shadow: 0 0 25px rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(12px);
+      opacity: 0;
+      transform: translateY(30px);
+      animation: slideUp 1.2s ease forwards 0.4s;
+    }
+
+    h1 {
+      color: #ff7aa2;
+      font-size: 2.6rem;
+      margin-bottom: 25px;
+      text-shadow: 
+        0 0 10px #fff,
+        0 0 20px rgba(255, 122, 162, 0.8),
+        0 0 35px rgba(255, 122, 162, 0.6);
+    }
+
+    input {
+      padding: 12px;
+      font-size: 1rem;
+      border-radius: 10px;
+      border: 2px solid rgba(255, 255, 255, 0.9);
+      outline: none;
+      text-align: center;
+      margin-bottom: 18px;
+      background: rgba(255, 255, 255, 0.85);
+      color: #333;
+      transition: 0.3s;
+    }
+
+    input:focus {
+      border-color: #ff7aa2;
+      box-shadow: 0 0 10px rgba(255, 122, 162, 0.6);
+    }
+
+    button {
+      background: linear-gradient(90deg, #ff7aa2, #ff4d85);
+      color: white;
+      border: none;
+      padding: 12px 40px;
+      font-size: 1rem;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(255, 122, 162, 0.4);
+      font-weight: 600;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px rgba(255, 122, 162, 0.8);
+    }
+
+    button:active {
+      transform: scale(0.97);
+      background: linear-gradient(90deg, #ff4d85, #ff7aa2);
+    }
+
+    p {
+      color: #fff;
+      margin-top: 12px;
+      font-size: 0.9rem;
+      text-shadow: 0 0 5px rgba(255, 255, 255, 0.9);
+    }
+
+    /* animation */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* flying hearts */
+    .heart {
+      position: absolute;
+      font-size: 22px;
+      animation: floatUp 3s linear forwards;
+      opacity: 0.9;
+      z-index: 3;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) scale(1.6);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Enter the Secret Code 🎂</h1>
+    <input type="text" id="code" placeholder="Enter birthday code..." />
+    <br />
+    <button onclick="checkCode()">Login</button>
+    <p>Hint: 🩷 her birthday (ddmm)</p>
+  </div>
+
+  <script>
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.innerText = "💖";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = Math.random() * 2 + 3 + "s";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 4000);
+    }
+
+    function checkCode() {
+      const input = document.getElementById('code').value.trim();
+      if (input === "0712") {
+        // effect: flying hearts before redirect
+        for (let i = 0; i < 20; i++) {
+          setTimeout(createHeart, i * 150);
+        }
+        setTimeout(() => {
+          window.location.href = "birthday.html";
+        }, 3000);
+      } else {
+        alert("❌ Wrong code! Try again 💞");
+      }
+    }
+  </script>
+</body>
+</html>

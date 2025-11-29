@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday 🎉</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      background: url('bb.png') no-repeat center center/cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+      animation: fadeIn 1.2s ease forwards;
+    }
+
+    /* lapisan gelap atas background */
+    body::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.55);
+      z-index: 0;
+    }
+
+    /* kotak putih tengah */
+    .box {
+      position: relative;
+      z-index: 1;
+      background: rgba(255, 255, 255, 0.92);
+      border-radius: 25px;
+      width: 80%;
+      max-width: 600px;
+      padding: 60px 40px;
+      text-align: center;
+      box-shadow: 0 0 35px rgba(255, 255, 255, 0.5);
+      animation: slideUp 1.2s ease forwards;
+    }
+
+    h1 {
+      color: #ff4d85;
+      font-size: 2.6rem;
+      margin-bottom: 25px;
+      text-shadow: 0 0 10px #fff, 0 0 20px #ffb6c1;
+    }
+
+    .gift {
+      width: 140px;
+      height: 140px;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: fadeUp 1.4s ease forwards 0.6s;
+    }
+
+    .gift:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px rgba(255, 182, 193, 0.8);
+    }
+
+    p {
+      color: #333;
+      margin-top: 25px;
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+
+    /* emoji kek jatuh */
+    .cake {
+      position: absolute;
+      top: -50px;
+      font-size: 1.8rem;
+      animation: fallDown 4s ease-in forwards;
+      opacity: 0.9;
+      z-index: 2;
+    }
+
+    /* animasi */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fallDown {
+      0% { transform: translateY(-60px) rotate(0deg); opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h1>Happy Birthday My Love 🎂💖</h1>
+    <img src="image/box gift.png" alt="Gift" class="gift" onclick="openGifts()" />
+    <p>🎁 Ini adalah hadiah untuk awak semua 💝</p>
+  </div>
+
+  <script>
+    // emoji kek jatuh
+    function createCake() {
+      const cake = document.createElement("div");
+      cake.classList.add("cake");
+      cake.innerText = "🎂";
+      cake.style.left = Math.random() * 100 + "vw";
+      cake.style.animationDuration = Math.random() * 2 + 3 + "s";
+      document.body.appendChild(cake);
+      setTimeout(() => cake.remove(), 5000);
+    }
+
+    // bila page buka
+    window.onload = () => {
+      for (let i = 0; i < 20; i++) {
+        setTimeout(createCake, i * 200);
+      }
+    };
+
+    // tekan gift pergi page hadiah
+    function openGifts() {
+      window.location.href = "gift.html";
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ms">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pilih Hadiah — Untuk Sayang 🎁</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="gift-page">
+
+  <div class="hearts">
+    <span class="heart">💖</span>
+    <span class="heart">💞</span>
+    <span class="heart">❤️</span>
+    <span class="heart">💓</span>
+    <span class="heart">💗</span>
+  </div>
+
+  <div class="gift-container fade-in">
+    <h1 class="gift-title typing3">Choose your surprise 🎀</h1>
+    <p class="gift-sub">Setiap hadiah ada makna tersendiri untuk sayang 💖</p>
+
+    <div class="gift-grid">
+      <div class="gift-item" onclick="openGift('wish.html')">
+        <img src="assets/gift1.png" alt="Wish Card">
+        <p>Wish Card 💌</p>
+      </div>
+
+      <div class="gift-item" onclick="openGift('persediaan.html')">
+        <img src="assets/gift2.png" alt="Persediaan">
+        <p>Persediaan 🎂</p>
+      </div>
+
+      <div class="gift-item" onclick="openGift('gallery.html')">
+        <img src="assets/gift3.png" alt="Photo Memories">
+        <p>Photo Memories 📸</p>
+      </div>
+
+      <div class="gift-item" onclick="openGift('secret.html')">
+        <img src="assets/gift4.png" alt="Secret Message">
+        <p>Secret Message 🔐</p>
+      </div>
+
+      <div class="gift-item" onclick="openGift('love.html')">
+        <img src="assets/gift5.png" alt="Love Letter">
+        <p>Love Letter 💕</p>
+      </div>
+    </div>
+
+    <div class="gift-actions">
+      <a href="birthday.html" class="btn ghost">Kembali ke Birthday 🎂</a>
+    </div>
+  </div>
+
+  <script>
+    function openGift(page) {
+      // animasi kecil sebelum redirect
+      document.body.classList.add("fade-out");
+      setTimeout(() => {
+        window.location.href = page;
+      }, 500);
+    }
+  </script>
+</body>
+</html>
