@@ -1,79 +1,145 @@
 <!DOCTYPE html>
-<html lang="ms">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Persediaan Birthday 🎁</title>
-  <style>
-    body {
-      background: linear-gradient(135deg, #ffb6c1, #dda0dd);
-      color: #fff;
-      text-align: center;
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
-      padding: 0;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Persediaan — Video & Notes</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:'Poppins',sans-serif;
+    min-height:100vh;
+    background:url('images/iii.png') center/cover no-repeat;
+    display:flex; align-items:flex-start; justify-content:center; padding:40px 16px;
+    position:relative;
+  }
+  body::before{ content:""; position:fixed; inset:0; background:rgba(255,182,193,0.2); backdrop-filter:blur(4px); z-index:0;}
+  .wrap{ position:relative; z-index:2; width:100%; max-width:980px; }
+  .top{ display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:18px; }
+  .top h1{ color:#ff2e88; font-size:26px; margin:0; }
+  .top p{ margin:0; color:#444 }
+  .grid{ display:grid; grid-template-columns: 1fr 360px; gap:18px; align-items:start; }
+  .video-list{ display:flex; flex-direction:column; gap:14px; }
+  .video-card{ position:relative; border-radius:14px; overflow:hidden; background:linear-gradient(180deg,#fff,#fffaf6); box-shadow:0 12px 34px rgba(0,0,0,0.08);}
+  .video-card img{ width:100%; height:200px; object-fit:cover; display:block; }
+  .play-circle{ position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:68px; height:68px; border-radius:50%; background:linear-gradient(135deg,#ff8fb1,#ff4d85); display:flex; align-items:center; justify-content:center; box-shadow:0 10px 30px rgba(255,80,140,0.18); cursor:pointer;}
+  .play-circle img{ width:36px; filter:drop-shadow(0 2px 10px rgba(0,0,0,0.18)); }
+  .meta{ padding:12px 14px; }
+  .meta h3{ color:#ff2e88; margin:0 0 6px 0; }
+  .meta p{ margin:0; color:#666; font-size:14px }
 
-    h1 {
-      font-size: 2.5em;
-      margin-bottom: 10px;
-    }
+  /* side notes */
+  .notes{ background:rgba(255,255,255,0.95); border-radius:12px; padding:16px; box-shadow:0 8px 22px rgba(0,0,0,0.08); }
+  .notes h4{ margin:0 0 8px; color:#ff3f85 }
+  .notes ul{ margin-top:8px; padding-left:18px; color:#444; }
 
-    h2 {
-      font-size: 1.2em;
-      font-weight: 300;
-      margin-bottom: 40px;
-    }
+  /* modal */
+  .modal{ position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(0,0,0,0.75); z-index:9999; padding:18px;}
+  .modal.show{ display:flex }
+  .modal-content{ width:100%; max-width:920px; background:#000; border-radius:12px; overflow:hidden; position:relative;}
+  .close{ position:absolute; right:12px; top:10px; z-index:20; color:#fff; background:rgba(255,255,255,0.06); padding:6px 10px; border-radius:8px; cursor:pointer }
 
-    video {
-      width: 80%;
-      max-width: 400px;
-      border-radius: 15px;
-      margin-bottom: 20px;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-    }
-
-    p {
-      font-size: 1.1em;
-      margin-bottom: 30px;
-    }
-
-    .btn {
-      background-color: white;
-      color: #d63384;
-      padding: 12px 25px;
-      border-radius: 30px;
-      border: none;
-      font-size: 1em;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    .btn:hover {
-      background-color: #ffe6f2;
-      transform: scale(1.05);
-    }
-  </style>
+  @media(max-width:900px){ .grid{ grid-template-columns: 1fr; } .video-card img{ height:170px } .notes{ order:2 } }
+</style>
 </head>
 <body>
 
-  <h1>🎂 Persediaan Birthday 🎉</h1>
-  <h2>Kenangan kecil sebelum hari bahagia</h2>
+<div class="wrap">
+  <div class="top">
+    <div>
+      <h1>Video Persediaan🎬</h1>
+      <p>Momen Semasa Menyiapkan Hadiah Untuk Kanchana Sayang.</p>
+    </div>
+    <div><a href="gift.html" style="text-decoration:none;background:rgba(255,255,255,0.9);padding:8px 12px;border-radius:12px;color:#ff3f85;font-weight:700;box-shadow:0 6px 18px rgba(0,0,0,0.06)">Kembali</a>
+</div>
+  </div>
 
-  <!-- Ganti video source ni bila dah upload -->
-  <video controls>
-    <source src="video/persediaan.mp4" type="video/mp4">
-    Browser anda tak sokong video 😢
-  </video>
+  <div class="grid">
+    <div class="video-list">
+      <div class="video-card" data-src="1persedu.mp4">
+        <img src="thum.jpeg" alt="Video 1">
+        <div class="play-circle" onclick="openVideo('1persedu.mp4','23/11/2025 — Buat Bintang')">
+          <img src="Untitled_design__5_-removebg-preview.png" alt="play">
+        </div>
+        <div class="meta">
+          <h3>Buat Bintang</h3>
+          <p>23/11/2025 — Masani Bintang Baru Sampai & Fisrt Time Buat Bintang🎁</p>
+        </div>
+      </div>
 
-  <p>9/11/2025 — Yayang dah berjaya 100% siapkan website birthday untuk syang 💖</p>
+      <div class="video-card" data-src="per4.mp4">
+        <img src="image/thum4.jpeg" alt="Video 2">
+        <div class="play-circle" onclick="openVideo('per4.mp4','28/11/2025 — Demam')">
+          <img src="Untitled_design__5_-removebg-preview.png" alt="play">
+        </div>
+        <div class="meta">
+          <h3>Buat Bintang Masa Demam</h3>
+          <p>28/11/2025 — Masa ni Tunggu Cayang Time Demam Yayang Buat Bintang.</p>
+        </div>
+      </div>
+    </div>
 
-  <button class="btn" onclick="window.location.href='gift.html'">Kembali ke Gift 🎁</button>
+    <div class="video-card" data-src="new.mp4">
+        <img src="image/thum3.jpeg" alt="Video 3">
+        <div class="play-circle" onclick="openVideo('new.mp4','28/11/2025 — Kotak Hadiah')">
+          <img src="Untitled_design__5_-removebg-preview.png" alt="play">
+        </div>
+        <div class="meta">
+          <h3>Setup Kotak Hadiah</h3>
+          <p>28/11/2025 — Demam pun still siapkan kotak hadiah bagi lawo</p>
+        </div>
+      </div>
+    </div>
+  
+    <aside class="notes">
+      <h4>Nota Persediaan</h4>
+      <ul>
+        <li>2/11/2025 — Mulakan Buat Website Ni Untuk Cayang.</li>
+        <li>23/11/2025 — Mulakan Buat Bintang.</li>
+        <li>28/11/2025 — Bagi Lawo Kotak Hadiah Untuk Cayang</li>
+        <li>30/11/2025 — Website Siap Cuma Terdapat Beberapa Perlu Kemaskini</li>
+        <li>5/12/2025 — Pagi ii Pukul 6.40 Berhenti dekat shell beli coklat lepastu letak dekat dalam kotak hadiah</li>
+        <li>5/12/2025 — Bagi Hadiah Dekat Cayangg</li>
+        <li>6/12/2025 — Website Siap Sepenuhnya</li>
+      </ul>
+      <p style="margin-top:12px;color:#666">Ada Banyak Lagi Yang Yayang Buat Untuk Persediaan Birthday Cayangg Cuma ada yang takdak gambar/video<code></code>.</p>
+    </aside>
+  </div>
+</div>
+
+<!-- modal -->
+<div id="modal" class="modal" role="dialog" aria-hidden="true">
+  <div class="modal-content" id="mc">
+    <div class="close" onclick="closeModal()">✕</div>
+    <div id="media"></div>
+  </div>
+</div>
+
+<script>
+  function openVideo(src, caption){
+    const modal = document.getElementById('modal');
+    const media = document.getElementById('media');
+    media.innerHTML = '';
+    const v = document.createElement('video');
+    v.src = src;
+    v.controls = true;
+    v.autoplay = true;
+    v.style.width = '100%';
+    media.appendChild(v);
+    modal.classList.add('show');
+    modal.setAttribute('aria-hidden','false');
+  }
+
+  function closeModal(){
+    const modal = document.getElementById('modal');
+    modal.classList.remove('show');
+    modal.setAttribute('aria-hidden','true');
+    setTimeout(()=> document.getElementById('media').innerHTML = '', 300);
+  }
+
+  window.addEventListener('keydown', e => { if(e.key==='Escape') closeModal(); });
+</script>
 
 </body>
 </html>

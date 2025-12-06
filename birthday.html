@@ -1,141 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Happy Birthday 🎉</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Birthday Surprise</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
-    body {
-      height: 100vh;
-      background: url('bb.png') no-repeat center center/cover;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-      position: relative;
-      animation: fadeIn 1.2s ease forwards;
-    }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    font-family:'Poppins',sans-serif;
+    height:100vh;
+    background:url('image/iii.png') center/cover no-repeat;
+    position:relative;
+    overflow:hidden;
+  }
+  body::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(255,182,193,0.25);
+    backdrop-filter:blur(5px);
+    z-index:0;
+  }
 
-    /* lapisan gelap atas background */
-    body::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.55);
-      z-index: 0;
-    }
+  /* floating icons */
+  .float-icon{
+    position:absolute;
+    width:90px;
+    opacity:0.8;
+    z-index:3;
+    animation: floaty 5s ease-in-out infinite;
+  }
 
-    /* kotak putih tengah */
-    .box {
-      position: relative;
-      z-index: 1;
-      background: rgba(255, 255, 255, 0.92);
-      border-radius: 25px;
-      width: 80%;
-      max-width: 600px;
-      padding: 60px 40px;
-      text-align: center;
-      box-shadow: 0 0 35px rgba(255, 255, 255, 0.5);
-      animation: slideUp 1.2s ease forwards;
-    }
+  @keyframes floaty{
+    0%{transform:translateY(0) rotate(0deg);}
+    50%{transform:translateY(-22px) rotate(4deg);}
+    100%{transform:translateY(0) rotate(0deg);}
+  }
 
-    h1 {
-      color: #ff4d85;
-      font-size: 2.6rem;
-      margin-bottom: 25px;
-      text-shadow: 0 0 10px #fff, 0 0 20px #ffb6c1;
-    }
+  /* main text */
+  #title1, #title2{
+    position:absolute;
+    width:100%;
+    text-align:center;
+    color:#ff2e88;
+    font-size:28px;
+    font-weight:700;
+    top:18%;
+    z-index:5;
+    transition:0.6s ease;
+  }
+  #title2{ display:none; }
 
-    .gift {
-      width: 140px;
-      height: 140px;
-      cursor: pointer;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      animation: fadeUp 1.4s ease forwards 0.6s;
-    }
+  /* cake */
+  #cake{
+    position:absolute;
+    left:50%; top:50%;
+    transform:translate(-50%, -50%);
+    width:260px;
+    cursor:pointer;
+    z-index:6;
+    transition:0.6s;
+  }
 
-    .gift:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 25px rgba(255, 182, 193, 0.8);
-    }
+  /* split cakes */
+  #cakeLeft, #cakeRight{
+    position:absolute;
+    top:50%;
+    width:200px;
+    opacity:0;
+    transform:translateY(-50%);
+    transition:1s ease;
+    z-index:6;
+  }
+  #cakeLeft{ left:50%; transform:translate(-110%, -50%) }
+  #cakeRight{ right:50%; transform:translate(110%, -50%) }
 
-    p {
-      color: #333;
-      margin-top: 25px;
-      font-size: 1.1rem;
-      font-weight: 500;
-    }
+  /* gift */
+  #gift{
+    position:absolute;
+    left:50%; top:53%;
+    transform:translateX(-50%);
+    width:250px;
+    display:none;
+    cursor:pointer;
+    z-index:6;
+  }
 
-    /* emoji kek jatuh */
-    .cake {
-      position: absolute;
-      top: -50px;
-      font-size: 1.8rem;
-      animation: fallDown 4s ease-in forwards;
-      opacity: 0.9;
-      z-index: 2;
-    }
+  /* confetti */
+  .confetti{
+    position:fixed;
+    width:10px;
+    height:14px;
+    background:var(--c);
+    top:-20px;
+    animation:fall 5s linear infinite;
+    z-index:10;
+  }
+  @keyframes fall{
+    to{ transform:translateY(120vh) rotate(360deg); }
+  }
 
-    /* animasi */
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
+  /* bottom love layer */
+  .love-floor{
+    position:absolute;
+    bottom:-10px;
+    width:100%;
+    height:120px;
+    background:url('images/love.png') repeat-x;
+    background-size:90px;
+    opacity:0.75;
+    z-index:1;
+  }
 
-    @keyframes slideUp {
-      from { opacity: 0; transform: translateY(40px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(50px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes fallDown {
-      0% { transform: translateY(-60px) rotate(0deg); opacity: 1; }
-      90% { opacity: 1; }
-      100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
-    }
-  </style>
+</style>
 </head>
 <body>
-  <div class="box">
-    <h1>Happy Birthday My Love 🎂💖</h1>
-    <img src="image/box gift.png" alt="Gift" class="gift" onclick="openGifts()" />
-    <p>🎁 Ini adalah hadiah untuk awak semua 💝</p>
-  </div>
 
-  <script>
-    // emoji kek jatuh
-    function createCake() {
-      const cake = document.createElement("div");
-      cake.classList.add("cake");
-      cake.innerText = "🎂";
-      cake.style.left = Math.random() * 100 + "vw";
-      cake.style.animationDuration = Math.random() * 2 + 3 + "s";
-      document.body.appendChild(cake);
-      setTimeout(() => cake.remove(), 5000);
-    }
+<!-- MANY FLOATERS -->
+<img src="image/1-removebg-preview.png"   class="float-icon" style="left:20px; top:20px;">
+<img src="image/Untitled_design__1_-removebg-preview.png"    class="float-icon" style="right:20px; bottom:20px;">
+<img src="image/hello-kitty-frame-removebg-preview.png"  class="float-icon" style="left:30px; bottom:30px;">
+<img src="image/2-removebg-preview.png"   class="float-icon" style="right:25px; top:30px; width:80px;">
+<img src="image/1-removebg-preview.png"   class="float-icon" style="left:50%; top:10%; width:70px;">
+<img src="image/hello-kitty-frame-removebg-preview.png"  class="float-icon" style="right:10%; bottom:50%; width:70px;">
 
-    // bila page buka
-    window.onload = () => {
-      for (let i = 0; i < 20; i++) {
-        setTimeout(createCake, i * 200);
-      }
-    };
+<h1 id="title1">Kek hari jadi untuk orang tersayang ❤️</h1>
+<h1 id="title2">Happy Birthday My Love 🎉</h1>
 
-    // tekan gift pergi page hadiah
-    function openGifts() {
-      window.location.href = "gift.html";
-    }
-  </script>
+<img id="cake" src="image/cake_birthday-removebg-preview.png" onclick="splitCake()">
+
+<img id="cakeLeft" src="image/kiri-removebg-preview.png">
+<img id="cakeRight" src="image/kanan-removebg-preview.png">
+
+<img id="gift" src="image/box_gift-removebg-preview.png" onclick="goGift()">
+
+<div class="love-floor"></div>
+
+<script>
+function splitCake(){
+  document.getElementById("cake").style.opacity = 0;
+
+  setTimeout(()=>{
+    document.getElementById("cake").style.display = "none";
+    document.getElementById("cakeLeft").style.opacity = 1;
+    document.getElementById("cakeRight").style.opacity = 1;
+    document.getElementById("cakeLeft").style.transform = "translate(-200%, -50%)";
+    document.getElementById("cakeRight").style.transform = "translate(200%, -50%)";
+    startConfetti();
+  },400);
+
+  setTimeout(()=>{
+    document.getElementById("title1").style.opacity = 0;
+    document.getElementById("cakeLeft").style.opacity = 0;
+    document.getElementById("cakeRight").style.opacity = 0;
+  },2000);
+
+  setTimeout(()=>{
+    document.getElementById("title1").style.display = "none";
+    document.getElementById("title2").style.display = "block";
+    document.getElementById("gift").style.display = "block";
+  },2700);
+}
+
+function startConfetti(){
+  for(let i=0;i<200;i++){
+    let c = document.createElement("div");
+    c.classList.add("confetti");
+    c.style.left = Math.random()*100+"vw";
+    c.style.animationDelay = Math.random()*3+"s";
+    c.style.setProperty("--c", randomColor());
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(), 5200);
+  }
+}
+
+function randomColor(){
+  const colors=["#ff2e88","#ff7aa2","#ffc8dd","#ff99cc","#ff5ca8"];
+  return colors[Math.floor(Math.random()*colors.length)];
+}
+
+function goGift(){
+  window.location.href = "gift.html";
+}
+</script>
+
 </body>
 </html>

@@ -1,171 +1,205 @@
 <!DOCTYPE html>
-<html lang="ms">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Photo Memories 💖</title>
-  <style>
-    body {
-      background: linear-gradient(135deg, #ffb6c1, #dda0dd);
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
-      padding: 0;
-      color: #fff;
-      text-align: center;
-      overflow-x: hidden;
-      overflow-y: auto;
-      position: relative;
-      height: 100vh;
-    }
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Photo Memories</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{ font-family:'Poppins',sans-serif; min-height:100vh; background:url('images/iii.png') center/cover no-repeat; padding:36px 12px; position:relative;}
+  body::before{content:"";position:fixed;inset:0;background:rgba(255,182,193,0.20);backdrop-filter:blur(4px);z-index:0}
+  .wrap{position:relative;z-index:2; max-width:1100px;margin:0 auto}
+  header{ text-align:center; margin-bottom:10px; color:#ff2e88}
+  header h1{ font-size:26px }
 
-    h1 {
-      margin-top: 40px;
-      font-size: 2.8em;
-      letter-spacing: 1px;
-    }
+  .back-btn{
+    display:inline-block;
+    margin-top:10px;
+    margin-bottom:20px;
+    background:rgba(255,255,255,0.9);
+    padding:10px 14px;
+    border-radius:12px;
+    color:#ff2e88;
+    font-weight:600;
+    text-decoration:none;
+    box-shadow:0 6px 18px rgba(0,0,0,0.06)
+  }
 
-    p.subtitle {
-      font-size: 1.2em;
-      margin-top: 10px;
-      margin-bottom: 50px;
-      font-style: italic;
-      color: #fff9f9;
-    }
+  .grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap:14px; }
+  .item{ background:linear-gradient(180deg,#fff,#fff7fb); border-radius:12px; overflow:hidden; box-shadow:0 10px 28px rgba(0,0,0,0.10); cursor:pointer}
+  .item img{ width:100%; height:180px; object-fit:cover; display:block}
+  .cap{ padding:10px; font-size:14px; color:#444 }
+  .cap .date{ color:#9b6b83; font-size:12px; margin-top:6px }
 
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-      padding: 20px 40px 60px;
-      justify-items: center;
-      animation: fadeIn 2s ease;
-      z-index: 2;
-      position: relative;
-    }
-
-    .photo {
-      background-color: rgba(255, 255, 255, 0.15);
-      border-radius: 20px;
-      padding: 15px;
-      box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .photo:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
-    }
-
-    .photo img {
-      width: 100%;
-      height: 250px;
-      object-fit: cover;
-      border-radius: 15px;
-    }
-
-    .caption {
-      margin-top: 10px;
-      font-size: 1em;
-      color: #fff;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .btn {
-      margin-top: 30px;
-      margin-bottom: 40px;
-      background-color: white;
-      color: #d63384;
-      padding: 12px 25px;
-      border-radius: 30px;
-      border: none;
-      font-size: 1em;
-      cursor: pointer;
-      transition: 0.3s;
-      z-index: 3;
-      position: relative;
-    }
-
-    .btn:hover {
-      background-color: #ffe6f2;
-      transform: scale(1.05);
-    }
-
-    /* Love falling animation */
-    .love {
-      position: fixed;
-      top: -10px;
-      font-size: 1.5rem;
-      animation: fall 5s linear infinite;
-      opacity: 0.8;
-      z-index: 1;
-    }
-
-    @keyframes fall {
-      0% {
-        transform: translateY(0) rotate(0deg);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(100vh) rotate(360deg);
-        opacity: 0;
-      }
-    }
-  </style>
+  .modal{ position:fixed; inset:0; background:rgba(0,0,0,0.85); display:none; align-items:center; justify-content:center; z-index:9999; padding:18px }
+  .modal.show{ display:flex }
+  .modal .content{ max-width:920px; width:100%; border-radius:12px; overflow:hidden; background:#000; }
+  .modal img{ width:100%; display:block }
+  .close{ position:absolute; right:18px; top:18px; color:#fff; background:rgba(255,255,255,0.06); padding:6px 10px; border-radius:8px; cursor:pointer }
+  @media(max-width:460px){ .item img{ height:150px } }
+</style>
 </head>
 <body>
+  <div class="wrap">
 
-  <h1>💞 Our Memories Together 💞</h1>
-  <p class="subtitle">“Every picture tells our love story — from strangers to soulmates.” 🥹✨</p>
+    <header>
+      <h1>KENANGAN KITEE 💗</h1>
+      <p style="color:#444">Memori kita bersama, NI SEMUA KEBAHAGIAN KITA. TQ SAYANGG.</p>
+    </header>
 
-  <div class="gallery">
-    <div class="photo">
-      <img src="images/photo1.jpg" alt="memory1">
-      <div class="caption">First time jumpa 💗</div>
-    </div>
+    <a href="gift.html" class="back-btn">← Kembali ke Gift 💝</a>
 
-    <div class="photo">
-      <img src="images/photo2.jpg" alt="memory2">
-      <div class="caption">Movie night 🍿</div>
-    </div>
+    <div class="grid">
+      <div class="item" onclick="openLight('image.jpeg','14/03/2025','Masani Yayang Ketua Ai Cayang Penolong')">
+        <img src="image/m2.jpeg" alt="">
+        <div class="cap"><strong>Team Ai</strong><div class="date">14/03/2025</div></div>
+      </div>
 
-    <div class="photo">
-      <img src="images/photo3.jpg" alt="memory3">
-      <div class="caption">Kedai makan fav kita 🥰</div>
-    </div>
+      <div class="item" onclick="openLight('ima1.jpeg','28/03/2025','Masani Yayang Curi ii Tangkap Gambar Cayang Pastu Buat wallpaper')">
+        <img src="image/m1.jpeg" alt="">
+        <div class="cap"><strong>Tangkap Gambar Cayang</strong><div class="date">28/03/2025</div></div>
+      </div>
 
-    <div class="photo">
-      <img src="images/photo4.jpg" alt="memory4">
-      <div class="caption">Raya bersama 🕌💚</div>
-    </div>
+      <div class="item" onclick="openLight('imagejpeg','28/03/2025','Kita buat trend tiktok dengan cikgu')">
+        <img src="image/r.jpeg" alt="">
+        <div class="cap"><strong>Trend Tiktok</strong><div class="date">28/03/2025</div></div>
+      </div>
 
-    <div class="photo">
-      <img src="images/photo5.jpg" alt="memory5">
-      <div class="caption">Sweet moment 💞</div>
+      <div class="item" onclick="openLight('images/photo4.jpg','20/04/2025','Cayang Masuk Hospital Yayang datang melawat')">
+        <img src="image/m3.jpeg" alt="">
+        <div class="cap"><strong>Cayang Sakit</strong><div class="date">20/04/2025</div></div>
+      </div>
+
+      <div class="item" onclick="openLight('images/photo5.jpg','02/06/2025','Yayang Blushing gila bila tengok cayang makeup')">
+        <img src="image/m4.jpeg" alt="">
+        <div class="cap"><strong>Makeup</strong><div class="date">20/07/2024</div></div>
+      </div>
+
+      <div class="item" onclick="openLight('images/photo6.jpg','20/06/2025','kita buat love sama-sama')">
+        <img src="image/m5.jpeg" alt="">
+        <div class="cap"><strong>Love</strong><div class="date">20/06/2025</div></div>
+      </div>
+
+      <div class="item" onclick="openLight('images/photo6.jpg','27/06/2025','First JJ couple kita guna gambar cayang lawoo nii')">
+        <img src="image/m6.jpeg" alt="">
+        <div class="cap"><strong>First JJ</strong><div class="date">27/06/2025</div></div>
+      </div>
+
+      <div class="item" onclick="openLight('images/photo6.jpg','04/07/2025','kita sama ii siapkan projek cg hayati')">
+        <img src="image/m7.jpeg" alt="">
+        <div class="cap"><strong>Siapkan Projek</strong><div class="date">04/07/2025</div></div>
+      </div>
+
+      <div class="item" onclick="openLight('images/photo6.jpg','09/07/2025','yayang teman cayang sipakan video pss')">
+        <img src="image/m8.jpeg" alt="">
+        <div class="cap"><strong>Teman Cayang</strong><div class="date">09/07/2025</div></div>
+      </div>
+
+      <div class="item" onclick="openLight('images/photo6.jpg','11/07/2025','Cayang Pelukk Yayang HEHEHEHE')">
+        <img src="image/m9.jpeg" alt="">
+        <div class="cap"><strong>Hugg</strong><div class="date">11/07/2025</div></div>
+      </div>
+
+      <div class="item" onclick="openLight('images/photo6.jpg','21/07/2025','Kita Matching ii Jam HEHEHEHE')">
+        <img src="image/m10.jpeg" alt="">
+        <div class="cap"><strong>Matching Jam</strong><div class="date">21/07/2025</div></div>
+      </div>
+
+      <div class="item" onclick="openLight('images/photo6.jpg','21/07/2025','yayang first time rasa cayang masak SEDAP gilee')">
+        <img src="image/m11.jpeg" alt="">
+        <div class="cap"><strong>Cheesekut</strong><div class="date">21/07/2025</div></div>
+      </div>
+
+      <div class="item" onclick="openLight('images/photo6.jpg','23/07/2025','kita duduk dekat makmal lepastu cayang bukak cermin CUTEEEE GILEEE')">
+        <img src="image/m12.jpeg" alt="">
+        <div class="cap"><strong>Comelll</strong><div class="date">23/07/2025</div></div>
+      </div>
+
+      <div class="item" onclick="openLight('images/photo6.jpg','25/07/2025','kite Staybackk lepastu buat kerja,kiss, hug lepastu buat tuu TQ HEHEHEHE')">
+        <img src="image/m13.jpeg" alt="">
+        <div class="cap"><strong>Staybackk</strong><div class="date">25/07/2025</div></div>
+      </div>
+
+      <div class="item" onclick="openLight('images/photo6.jpg','26/07/2025','kita gi lawann projekk HEHEHE Cayang Dapat No 1 Yayang No3')">
+        <img src="image/m14.jpeg" alt="">
+        <div class="cap"><strong>Pi lawan</strong><div class="date">26/07/2025</div></div>
+      </div>
+
+      <div class="item" onclick="openLight('images/photo6.jpg','26/07/2025','kita tangkap gambar sesama masani cg lanja kita makan dekat kapitan')">
+        <img src="image/m15.jpeg" alt="">
+        <div class="cap"><strong>Makann</strong><div class="date">26/07/2025</div></div>
+      </div>
+
+      <div class="item" onclick="openLight('images/photo6.jpg','28/07/2025','ni gambar sebelum kita gi lawan tapi yayang dapat tarikh ni. Tapi Masani Kita sweet gilaa! insyallah oneday cayang dengan yayang sembayang sekali')">
+        <img src="image/m16.jpeg" alt="">
+        <div class="cap"><strong>cayang Teman Yayang</strong><div class="date">28/07/2025</div></div>
+      </div>
+
+      <div class="item" onclick="openLight('images/photo6.jpg','01/08/2025','Ni gambar kita gi mixue sama ii lastday yayang pakai baju pengawas')">
+        <img src="image/m17.jpeg" alt="">
+        <div class="cap"><strong>Gi Mixuee</strong><div class="date">01/08/2025</div></div>
+      </div>
+
+      <div class="item" onclick="openLight('images/photo6.jpg','07/09/2025','Masyallah First Time yayang nampak cayang pakai tudung lawooo gilee HEHEHE Nanti Lepas Cayang Masuk Islam cayang pakai setiap Harii')">
+        <img src="image/m18.jpeg" alt="">
+        <div class="cap"><strong>Bidadarii Woo</strong><div class="date">07/09/2025</div></div>
+      </div>
+
+      <div class="item" onclick="openLight('images/photo6.jpg','12/09/2025','Cayang Makeup Pakai Baju kakak time ni cayangg LAWOOO GILEEE TAUUU Pastu kite gi Mixuee')">
+        <img src="image/m19.jpeg" alt="">
+        <div class="cap"><strong>Cayang Masuk Koir</strong><div class="date">12/09/2025</div></div>
+      </div>
+
+      <div class="item" onclick="openLight('images/photo6.jpg','07/11/2025','Masani yayang Blushing Terukk woo sebab dapat tengok perut cayanggg HIHIHIHI')">
+        <img src="image/m20.jpeg" alt="">
+        <div class="cap"><strong>UYUTTT UYUTTT</strong><div class="date">01/11/2025</div></div>
+      </div>
+
+      <div class="item" onclick="openLight('images/photo6.jpg','14/11/2025','yayng belikan cayang no baru, cayang download whatsapp semua. kite mulakan hidup baruu HEHEHEHE')">
+        <img src="image/m21.jpeg" alt="">
+        <div class="cap"><strong>Buku Baruu</strong><div class="date">14/11/2025</div></div>
+      </div>
+
+      <div class="item" onclick="openLight('images/photo6.jpg','15/11/2025','yayang sumpah tenang gile kita vc tido samaa samaa Best woo')">
+        <img src="image/m22.jpeg" alt="">
+        <div class="cap"><strong>Tido Siangg</strong><div class="date">15/11/2025</div></div>
+      </div>
+
+      <div class="item" onclick="openLight('images/photo6.jpg','28/11/2025','masaniii yayang demam cayang jaga yayangg HEHEHE TQQ')">
+        <img src="image/m23.jpeg" alt="">
+        <div class="cap"><strong>yayang demammm</strong><div class="date">28/11/2025</div></div>
+      </div>
+
+      <div class="item" onclick="openLight('images/photo6.jpg','05/12/2025','YAYANG HAPPY MASANI DAPAT SPENDTIME DENGAN CAYANG SAMBUT BIRTHDAY CAYANGG YAYANG BELIKAN RAMEN,AYAM GUNTING,SOSEJ SEBAB CAYANG TERINGINN LEPASTU BUAT HADIAH UNTUK CAYANGG. MASA TU BELANJA CAYANGG NAK APE JE AMBIKK MASA BALIK DAPAT KISS LEPASTUU MASA BALIK YAYANG PUSING BANYAK KALI SEBAB NAK JAGA CAYANG JEE HEHEHE HAPPY BIRTHDAY KANCHANA SAYANGG ')">
+        <img src="image/m24.jpeg" alt="">
+        <div class="cap"><strong>HAPPYY BIRTHDAYY KANCHANA</strong><div class="date">05/12/2025</div></div>
+      </div>
+
+
     </div>
   </div>
 
-  <button class="btn" onclick="window.location.href='gift.html'">Kembali ke Gift 🎁</button>
+  <div id="modal" class="modal" aria-hidden="true">
+    <div class="close" onclick="closeLight()">✕</div>
+    <div class="content" id="lightContent"></div>
+  </div>
 
-  <script>
-    const emojis = ['💖','💞','💕','💘','💓','💗'];
-    function createLove() {
-      const love = document.createElement('div');
-      love.classList.add('love');
-      love.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-      love.style.left = Math.random() * 100 + 'vw';
-      love.style.animationDuration = (3 + Math.random() * 3) + 's';
-      document.body.appendChild(love);
-
-      setTimeout(() => {
-        love.remove();
-      }, 5000);
-    }
-    setInterval(createLove, 300);
-  </script>
-
+<script>
+  function openLight(src,date,caption){
+    const m = document.getElementById('modal');
+    const c = document.getElementById('lightContent');
+    c.innerHTML = `<img src="${src}" alt=""><div style="padding:12px;color:#fff;background:rgba(0,0,0,0.4)"><strong>${date}</strong><p style="margin-top:6px">${caption}</p></div>`;
+    m.classList.add('show');
+    m.setAttribute('aria-hidden','false');
+  }
+  function closeLight(){
+    const m = document.getElementById('modal');
+    m.classList.remove('show');
+    m.setAttribute('aria-hidden','true');
+    setTimeout(()=> document.getElementById('lightContent').innerHTML = '', 200);
+  }
+  window.addEventListener('keydown', e=> { if(e.key==='Escape') closeLight(); });
+</script>
 </body>
 </html>

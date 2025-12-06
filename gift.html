@@ -1,65 +1,160 @@
-<!doctype html>
-<html lang="ms">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Pilih Hadiah — Untuk Sayang 🎁</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Hadiah Untuk Awak 🎁</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:'Poppins',sans-serif;
+    min-height:100vh;
+    background: url('images/iii.png') center/cover no-repeat;
+    display:flex;
+    align-items:flex-start;
+    justify-content:center;
+    padding:36px 18px;
+    position:relative;
+    overflow-y:auto;
+  }
+  body::before{
+    content:""; position:fixed; inset:0; background:rgba(255,182,193,0.22); backdrop-filter:blur(4px); z-index:0;
+  }
+  .wrap{position:relative;z-index:2; width:100%; max-width:1100px;}
+  header{ text-align:center; margin-bottom:20px; color:#ff2e88; text-shadow:0 4px 18px rgba(255,120,160,0.12)}
+  header h1{font-size:28px; margin-bottom:6px}
+  header p{color:#4b4b4b; opacity:0.95}
+
+  .grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit,minmax(240px,1fr));
+    gap:22px;
+    margin-top:18px;
+  }
+
+  .card{
+    perspective:1000px;
+    width:100%;
+    height:360px;
+  }
+
+  .inner{
+    width:100%; height:100%;
+    position:relative;
+    transform-style:preserve-3d;
+    transition: transform 0.85s cubic-bezier(.2,.9,.2,1);
+    cursor:pointer;
+  }
+
+  .inner.flipped{ transform: rotateY(180deg); }
+
+  .side{
+    position:absolute; inset:0; border-radius:18px; backface-visibility:hidden;
+    display:flex; align-items:center; justify-content:center; flex-direction:column;
+    box-shadow: 0 12px 36px rgba(0,0,0,0.14);
+    border: 2px solid rgba(255,255,255,0.55);
+    background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,245,250,0.95));
+    padding:18px;
+  }
+
+  .front img{ width:70%; border-radius:12px; box-shadow:0 10px 30px rgba(255,120,170,0.08) }
+  .front .line { margin-top:14px; color:#ff4d88; font-weight:700; font-size:1rem; text-align:center }
+
+  .back{
+    transform: rotateY(180deg);
+    padding:18px;
+    text-align:center;
+  }
+  .back h3{ color:#ff2e88; margin-bottom:12px; font-size:18px }
+  .back p{ color:#444; font-size:14px; line-height:1.5; margin-bottom:14px }
+  .back .btn{
+    display:inline-block; padding:10px 18px; border-radius:14px; background:linear-gradient(90deg,#ff7aa2,#ff4d85);
+    color:white; text-decoration:none; font-weight:700; box-shadow:0 10px 20px rgba(255,80,140,0.18);
+  }
+
+  .back .btn.small{ padding:8px 14px; border-radius:12px; font-size:14px }
+
+  /* little entrance */
+  .card{ opacity:0; transform:translateY(-20px); animation:enter .5s ease forwards; }
+  .card:nth-child(1){ animation-delay: .15s }
+  .card:nth-child(2){ animation-delay: .30s }
+  .card:nth-child(3){ animation-delay: .45s }
+  @keyframes enter{ to{ opacity:1; transform:none } }
+
+  /* back link top */
+  .topbar{ position:fixed; left:16px; top:12px; z-index:9; }
+  .topbar a{ background:rgba(255,255,255,0.9); padding:8px 12px; border-radius:12px; color:#ff3f85; text-decoration:none; font-weight:600; box-shadow:0 6px 18px rgba(0,0,0,0.08) }
+
+  @media(max-width:480px){
+    .inner{ transition: transform .6s }
+    .front img{ width:75% }
+  }
+</style>
 </head>
-<body class="gift-page">
+<body>
+  <div class="topbar"><a href="birthday.html">← Kembali</a></div>
 
-  <div class="hearts">
-    <span class="heart">💖</span>
-    <span class="heart">💞</span>
-    <span class="heart">❤️</span>
-    <span class="heart">💓</span>
-    <span class="heart">💗</span>
+  <div class="wrap">
+    <header>
+      <h1>Semua Ni Hadiah istimewa Untuk Kanchana</h1>
+      <p>Terimalah Hadiah Tak Seberapa Dari Lelaki yang Mencintai Sayang.</p>
+    </header>
+
+    <div class="grid">
+      <!-- Gift 1 -->
+      <div class="card">
+        <div class="inner" onclick="toggleFlip(this)">
+          <div class="side front">
+            <img src="image/Untitled_design__2_-removebg-preview.png" alt="Hadiah 1">
+            <div class="line">Untuk bidadari yang selalu buat yayang senyum 🌸</div>
+          </div>
+          <div class="side back">
+            <h3>Surat Cinta</h3>
+            <p>Sebuah surat kecil dari hati dipenuhi rindu & terima kasih</p>
+            <a class="btn" href="wish.html">Buka Surat</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gift 2 -->
+      <div class="card">
+        <div class="inner" onclick="toggleFlip(this)">
+          <div class="side front">
+            <img src="image/persedi.png" alt="Hadiah 2">
+            <div class="line">Setiap detik untuk mendapat senyuman bidadari✨</div>
+          </div>
+          <div class="side back">
+            <h3>Persediaan</h3>
+            <p>Video & cerita untuk ulang tahun Sayang</p>
+            <a class="btn" href="persediaan.html">Lihat Persediaan</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gift 3 -->
+      <div class="card">
+        <div class="inner" onclick="toggleFlip(this)">
+          <div class="side front">
+            <img src="image/memori.png" alt="Hadiah 3">
+            <div class="line">memori yang sangat Bahagia♥️</div>
+          </div>
+          <div class="side back">
+            <h3>Kenangan Terindah</h3>
+            <p>Album kenangan kita dipenuhi cinta</p>
+            <a class="btn" href="gallery.html">Buka Memories</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
 
-  <div class="gift-container fade-in">
-    <h1 class="gift-title typing3">Choose your surprise 🎀</h1>
-    <p class="gift-sub">Setiap hadiah ada makna tersendiri untuk sayang 💖</p>
-
-    <div class="gift-grid">
-      <div class="gift-item" onclick="openGift('wish.html')">
-        <img src="assets/gift1.png" alt="Wish Card">
-        <p>Wish Card 💌</p>
-      </div>
-
-      <div class="gift-item" onclick="openGift('persediaan.html')">
-        <img src="assets/gift2.png" alt="Persediaan">
-        <p>Persediaan 🎂</p>
-      </div>
-
-      <div class="gift-item" onclick="openGift('gallery.html')">
-        <img src="assets/gift3.png" alt="Photo Memories">
-        <p>Photo Memories 📸</p>
-      </div>
-
-      <div class="gift-item" onclick="openGift('secret.html')">
-        <img src="assets/gift4.png" alt="Secret Message">
-        <p>Secret Message 🔐</p>
-      </div>
-
-      <div class="gift-item" onclick="openGift('love.html')">
-        <img src="assets/gift5.png" alt="Love Letter">
-        <p>Love Letter 💕</p>
-      </div>
-    </div>
-
-    <div class="gift-actions">
-      <a href="birthday.html" class="btn ghost">Kembali ke Birthday 🎂</a>
-    </div>
-  </div>
-
-  <script>
-    function openGift(page) {
-      // animasi kecil sebelum redirect
-      document.body.classList.add("fade-out");
-      setTimeout(() => {
-        window.location.href = page;
-      }, 500);
-    }
-  </script>
+<script>
+  function toggleFlip(el){
+    const inner = el;
+    inner.classList.toggle('flipped');
+  }
+</script>
 </body>
 </html>

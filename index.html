@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Login | Birthday Code</title>
+  <title>Happy Birthday Kanchana</title>
   <style>
     * {
       margin: 0;
@@ -32,9 +32,30 @@
       z-index: 0;
     }
 
+    /* Floating Deco Transparent */
+    .deco {
+      position: absolute;
+      width: 80px;
+      opacity: 0.9;
+      animation: float 3s ease-in-out infinite;
+      z-index: 3;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+      100% { transform: translateY(0); }
+    }
+
+    .kitty { top: 20px; left: 20px; width: 90px; animation-delay: .3s; }
+    .cake { bottom: 20px; right: 25px; width: 120px; animation-delay: .6s; }
+    .love1 { top: 50%; left: -5px; width: 55px; transform: translateY(-50%); }
+    .love2 { top: 50%; right: -5px; width: 55px; transform: translateY(-50%); }
+    .cat { bottom: 20px; left: 25px; width: 100px; animation-delay: .9s; }
+
     .container {
       position: relative;
-      z-index: 1;
+      z-index: 2;
       background: rgba(255, 255, 255, 0.45);
       border: 2px solid rgba(255, 255, 255, 0.8);
       border-radius: 20px;
@@ -105,51 +126,46 @@
       text-shadow: 0 0 5px rgba(255, 255, 255, 0.9);
     }
 
-    /* animation */
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    @keyframes slideUp {
-      from {
-        opacity: 0;
-        transform: translateY(40px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* flying hearts */
+    /* Hearts floating */
     .heart {
       position: absolute;
       font-size: 22px;
       animation: floatUp 3s linear forwards;
       opacity: 0.9;
-      z-index: 3;
+      z-index: 5;
     }
 
     @keyframes floatUp {
-      0% {
-        transform: translateY(0) scale(1);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-100vh) scale(1.6);
-        opacity: 0;
-      }
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(-100vh) scale(1.6); opacity: 0; }
+    }
+
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
+
 <body>
+
+  <!-- Decorative floating images -->
+  <img src="image/hello-kitty-frame-removebg-preview.png" class="deco kitty">
+  <img src="image/2-removebg-preview.png" class="deco cake">
+  <img src="image/1-removebg-preview.png" class="deco love1">
+  <img src="image/1-removebg-preview.png" class="deco love2">
+  <img src="image/Untitled_design__1_-removebg-preview.png" class="deco cat">
+
   <div class="container">
-    <h1>Enter the Secret Code 🎂</h1>
-    <input type="text" id="code" placeholder="Enter birthday code..." />
-    <br />
+    <h1>Happy Birthdayy Kanchana Sayangg🎂</h1>
+
+    <input type="text" id="code" placeholder="Masukkan Kod Cinta Kita..." />
+    <br>
     <button onclick="checkCode()">Login</button>
-    <p>Hint: 🩷 her birthday (ddmm)</p>
+
+    <p>Hint: 🩷Nyamnyamnyam Birthdayy</p>
   </div>
 
   <script>
@@ -165,18 +181,21 @@
 
     function checkCode() {
       const input = document.getElementById('code').value.trim();
-      if (input === "0712") {
-        // effect: flying hearts before redirect
+      
+      if (input === "0724") {
         for (let i = 0; i < 20; i++) {
-          setTimeout(createHeart, i * 150);
+          setTimeout(createHeart, i * 120);
         }
+
         setTimeout(() => {
           window.location.href = "birthday.html";
         }, 3000);
+
       } else {
-        alert("❌ Wrong code! Try again 💞");
+        alert("❌EEEEE CAYANGGGGG! KOD SALAH TRYY LAGIII💞");
       }
     }
   </script>
+
 </body>
 </html>

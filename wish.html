@@ -1,43 +1,163 @@
-<!doctype html>
-<html lang="ms">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Wish Card — Untuk Sayang 💌</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Birthday Wish — From Me to You</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+  *{margin:0;padding:0;box-sizing:border-box}
+
+  body{
+    font-family:'Poppins',sans-serif;
+    min-height:100vh;
+    background:url('images/iii.png') center/cover no-repeat fixed;
+    display:flex; justify-content:center; padding:40px 16px;
+    position:relative;
+  }
+
+  body::before{
+    content:""; position:fixed; inset:0;
+    background:rgba(255,182,193,0.25);
+    backdrop-filter:blur(5px);
+    z-index:0;
+  }
+
+  .wrap{
+    position:relative; z-index:2; width:100%; max-width:900px;
+    animation:fadeIn .9s ease;
+  }
+
+  @keyframes fadeIn{
+    from{opacity:0; transform:translateY(20px)}
+    to{opacity:1; transform:translateY(0)}
+  }
+
+  .header{
+    text-align:center; margin-bottom:26px;
+  }
+  .header h1{
+    font-size:32px; color:#ff2e88; font-weight:700;
+  }
+  .header p{
+    color:#444; margin-top:6px;
+  }
+
+  .card{
+    background:rgba(255,255,255,0.92);
+    border-radius:22px;
+    padding:34px 28px;
+    box-shadow:0 12px 40px rgba(0,0,0,0.1);
+    backdrop-filter:blur(4px);
+    display:flex; flex-direction:column; gap:16px;
+  }
+
+ 
+.wish-title {
+  background: linear-gradient(135deg, #ff4d85, #ff2e88, #ff7ba5);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  font-weight: 700;
+}
+
+  .wish-text{
+    font-size:17px; line-height:1.7; color:#555;
+  }
+
+  .line{
+    width:100%;
+    height:2px;
+    background:linear-gradient(90deg,#ff6fa2,transparent);
+    margin:8px 0 16px;
+  }
+
+  .btn-wrap{
+    text-align:center;
+  }
+
+  .btn{
+    text-decoration:none;
+    background:linear-gradient(135deg,#ff8fb1,#ff4d85);
+    padding:10px 20px;
+    border-radius:14px;
+    color:#fff;
+    font-weight:700;
+    box-shadow:0 6px 20px rgba(255,80,130,0.25);
+    transition:.2s;
+    display:inline-block;
+  }
+  .btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 24px rgba(255,80,130,0.32);
+  }
+</style>
 </head>
-<body class="wish-page">
-  <div class="hearts">
-    <span class="heart">💖</span>
-    <span class="heart">💞</span>
-    <span class="heart">❤️</span>
-    <span class="heart">💓</span>
-    <span class="heart">💗</span>
+<body>
+
+<div class="wrap">
+  
+  <div class="header">
+    <h1>My Birthday Wish For You 🎀</h1>
+    <p>Specially written… only for you.</p>
   </div>
 
-  <div class="wish-container fade-in">
-    <h1 class="typing3">To my dearest love 💖</h1>
+  <div class="card">
+    <div class="wish-title">Happy Birthday, Sayang ❤️</div>
 
-    <div class="wish-card">
-      <p id="wishText" class="wish-text">
-        Happy Birthday, sayang.<br><br>
-        Dari hari pertama kita kenal sampai hari ni, kau selalu buat aku rasa tenang.  
-        Terima kasih kerana jadi teman, pendengar dan cahaya hati aku.  
-        Semoga hari ni penuh senyuman, kejutan manis dan pelukan yang tak putus.<br><br>
-        Aku sayang kau sampai bulan dan balik lagi.  
-        — Acap 💌
-      </p>
+    <div class="line"></div>
+
+    <p class="wish-text">
+      Kanchana, 
+      Terima kasih sebab hadir dalam hidup yayang 💗 dulu hidup yayang serabut takdak hala tuju
+      hidup yayang dulu penat gila. Bila cayang hadir dalam hidup yayang , cayang telah mewarnai hidup yayang
+      cayang hilangkan penat yayang, cayang tempat yayang sandar hilang penat cerita hari yayang, gosip, kacip dan manja yayang
+      yayang nak sebut yang jarang yayang sebut iaitu 'cayang adalah antara perkara paling bermakna yang pernah Allah bagi dalam hidup yayang'
+
+    </p>
+
+    <p class="wish-text">
+      Terima kasih sebab tak tinggal yayang,7 bulan bukan sekejap tapi dalam 7 bulan tu yayang telah bahagia dengan cayang, yayang happy sangat
+      yayang syukur sangat dengan cayang tau. Kite telah laluai banyak halangan bersama, dari kena tindakan bilik displin. parents mai. phone cayang kena rampas
+      kena pukul ade perasaan kecewa tapi kanchana kuat dia sayang yayang sangat walau ape pun jadi tetap bersama Terima kasih sayang
+      cayang tak sikit pun berubah walaupun yayang banyak buat salah sakitkan hati cayang
+     </p>
+
+    <p class="wish-text">
+      cayang sangat berharga bagi yayang. cayang pemata, bidadari yang turun ke muka bumi ini. cayang dunia yayang. jantung yayang. yayang berjanji sumpah takkan tinggalkan cayang langsung  
+      yayang akan terus hidup dan akan jaga cayang sampai bila-bila. sampai kita masuk syurga sama-sama. Yayang sayang cayang sorang tau. Takde orang lain yang yayang cintai selain cayang sorang
+      yayang sayang cayang sorang jee sampaii bila bila I LOVE YOUU SO MUCHHHHHH SAYANGGGG
+      Hari ini hari istimewa bukan sahaja bagi sayang tapi bagi yayang jugak kerana hari ini terlahirnya seorang insan di muka bumi ini yang sangat cantik, comel sedunia dan semuaa pandaii pandaii masakk. untung mat dahlah sempurna pandai masak
+      untuk anak kite KANASH Kan. 
+      cakap pasal streak Terima Kasih Tau sebab pernah Hilangkan Trauma yayang. dulu yayang trauma nak buat streak sebab takut mati but Harini dapat membuktikan Kanchana Setia streak kite dah 76 campur 20 dulu dah nak 96 TQ SAYANGGGG
+    </p>
+
+    <p class="wish-text">
+      SELAMAT ULANG TAHUN YANG KE-16 KANCHANA SRIPHAKDEE A/P CHAINARONG SUVANPRATUM SOOOOO MUCHHHHHH Yayang sayang cayangg sangat sangatt 
+      yayang bukan kaya belanja sayang, yayang buat ape pun untuk cayangg bahagiaa happy sebab senyuman sayangg tuu ketenangan yayangg. yayang bukan hensem dan sempurna sangat tapi yayang Berjanji akan jadi yang lebih baik dan terbaik untuk sayang
+      yayang minta maaf kalau selamani ada buat salah dekat sayang yayang marah sayang semua sorry tauu sakitkan hati bagi cayang kecewa semua sorry 
+      yayang akan berubah jadi lebih baik ke arah yang cayang sukeee
+     </p>
+
+     <p class="wish-text">
+      HAPPY BIRTHDAY SAYANGG TERIMA KASIH KERANA JADI YANG TERBAIK UNTUK YAYANG, TERIMA KASIH KERANA BAGI YAYANG KASIH SAYANGG, TERIMA KASIH TERIMAA YAYANG
+      TERIMA KASIHH SEBAB COMELL UNTUK YAYANG SORANG JE HEHEHE TERIMA KASIHH SEBAB SAYANG YAYANG, TERIMA KASIH SEBAB TAKKAN TINGGALKAN YAYANG
+      HAPPY BIRTHDAY SAYANGG YAYANGG HARI INI HARI ISTERIMA UNTUK ORANG TERSAYANG. TERIMALAH HADIAH YAYANG NII. SEMOGA CAYANG LEPASNI DIBERIKAN KESIHATAN YANG BAIK. DIPERLUASKAN REZEKI
+      DIBERIKAN KETENANGAN DAN KUAT TERUS UNTUK MENJADI ISTERI KESAYANGAN ASHRAF TERIMA KASIHH SAYANGG I LOVE YOUUUU SO MUCHHHHHH
+
+      MUHAMMAD ASHRAF BIN MAZIBER RAHMAN KALAM
+      ❤️
+      KANCHANA SRIPHAKDEE A/P CHAINARONG SUVANPRATUM
+     </p>
+
+    <div class="btn-wrap">
+      <a href="gift.html" class="btn">Kembali ke Gift 🎁</a>
     </div>
 
-    <div class="wish-actions" style="margin-top:18px;">
-      <!-- HANYA SATU BUTANG: kembali ke halaman gift -->
-      <a href="gift.html" class="btn ghost">Kembali ke Gift 🎁</a>
-    </div>
   </div>
 
-  <script>
-    // Jika kau mahu typing effect pada heading sahaja (CSS .typing3 gunakan animasi)
-    // tiada butang lain — ikut permintaan Acap
-  </script>
+</div>
+
 </body>
 </html>
